@@ -3,27 +3,6 @@ import json
 import os
 import random
 
-# Токен можно хранить в переменной окружения на хостинге
-TOKEN = "8850751178:AAFVq8GMqJzh7Oo5YnMhKO-Etwm6VocbHNw"
-bot = telebot.TeleBot(TOKEN)
-DATA_FILE = "places.json"
-
-def load_places():
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return []
-
-def save_places(places):
-    with open(DATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(places, f, ensure_ascii=False, indent=2)
-
-def main_keyboard():
-    kb = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-    kb.row("🏔 Найти тихое место", "📝 Подтвердить")
-    kb.row("➕ Добавить место", "📊 Статистика")
-    return kb
-
 @bot.message_handler(commands=['start'])
 def start(message):
     bot.send_message(
